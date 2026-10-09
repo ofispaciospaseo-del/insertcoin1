@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fechadora Exacta - Insert Coin | Mardelwood</title>
+  <style>
+    :root {
+      --bg-color: #0d0a1a;
+      --neon-pink: #ff007f;
+      --neon-blue: #00f0ff;
+      --neon-yellow: #ffcc00;
+      --text-green: #33ff66;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-green);
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .arcade-cabinet {
+      background-color: #120c24;
+      border: 3px solid var(--neon-pink);
+      border-radius: 16px;
+      padding: 25px;
+      max-width: 750px;
+      width: 100%;
+      box-shadow: 0 0 25px rgba(255, 0, 127, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.15);
+    }
+
+    .header {
+      text-align: center;
+      border-bottom: 2px dashed var(--neon-blue);
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      background-color: var(--neon-pink);
+      color: #fff;
+      padding: 4px 12px;
+      font-weight: bold;
+      font-size: 12px;
+      border-radius: 4px;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      color: var(--neon-blue);
+      font-size: 24px;
+      margin: 12px 0 6px 0;
+      text-shadow: 0 0 8px var(--neon-blue);
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      color: var(--neon-yellow);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .manifesto {
+      background-color: #1a1233;
+      border-left: 4px solid var(--neon-pink);
+      padding: 15px;
+      margin-bottom: 25px;
+      border-radius: 0 8px 8px 0;
+      color: #e2e8f0;
+      font-size: 14px;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .controls-panel {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #080511;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      margin-bottom: 25px;
+    }
+
+    .drop-zone {
+      border: 2px dashed var(--neon-blue);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      background: rgba(0, 240, 255, 0.05);
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    .drop-zone:hover {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: var(--neon-pink);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .ticket {
+      background-color: #f8fafc;
+      color: #0f172a;
+      padding: 20px;
+      border-radius: 4px;
+      border-top: 6px dashed #94a3b8;
+      border-bottom: 6px dashed #94a3b8;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .hash-box {
+      word-break: break-all;
+      margin-top: 8px;
+      background-color: #e2e8f0;
+      padding: 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 11px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+<div class="arcade-cabinet">
+
+  <div class="header">
+    <span class="badge">🕹️ MARDELWOOD ARCADE SYSTEM 🕹️</span>
+    <h1>INSERT COIN :: FECHADORA EXACTA</h1>
+    <div class="subtitle">MODELO '84 — PROCESAMIENTO INSTANTÁNEO DE AUTENTICIDAD</div>
+  </div>
+
+  <div class="manifesto">
+    "Antes ibas al fichín, ponías la ficha y te daba tres vidas. Hoy ponés tu imagen en la Fechadora Exacta y te da la vida eterna de tu prueba. No somos correo, no somos escribanos, no estampamos sellos de goma. Somos el arcade de la verdad: nos das tu foto y te devolvemos la coordenada exacta de tu existencia en el tiempo, con su peso, su milisegundo y su Hash-ID único. Protegé lo tuyo jugando."
+  </div>
+
+  <!-- Zona de carga de imagen -->
+  <div class="drop-zone" onclick="document.getElementById('fileInput').click()">
+    <span style="color: var(--neon-yellow); font-weight: bold;">📷 HACÉ CLIC O ARRASTRÁ TU FOTO ACÁ</span>
+    <br><span style="font-size: 11px; color: #cbd5e1;">[ INSERT COIN TO PROCESS HASH ]</span>
+    <input type="file" id="fileInput" accept="image/*" onchange="processImage(this.files[0])">
+  </div>
+
+  <!-- Ticket Fiscal / Hash -->
+  <div class="ticket" id="ticket">
+    <div style="text-align: center; font-weight: bold; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px; margin-bottom: 10px;">
+      *** TICKET DE AUTENTICIDAD DIGITAL ***<br>
+      VENTANIYA SOLUCIONES — FECHAROBOT3
+    </div>
+
+    <div><strong>ARCHIVO:</strong> <span id="fileName">-</span></div>
+    <div><strong>INSTANTE EXACTO:</strong> <span id="timestamp">-</span></div>
+    <div><strong>PESO DIGITAL:</strong> <span id="fileSize">-</span></div>
+    <div class="hash-box">
+      <strong>HASH-ID (SHA-256):</strong><br>
+      <span id="hashValue">-</span>
+    </div>
+
+    <div style="text-align: center; font-weight: bold; margin-top: 12px; color: #059669; border-top: 1px dashed #cbd5e1; padding-top: 8px;">
+      ✔ REGISTRO INALTERABLE GENERADO CON ÉXITO
+    </div>
+  </div>
+
+  <div class="footer">
+    CREDITS: 99 | MARDELWOOD DEFENSE NETWORK | GAME OVER TO BUREAUCRACY
+  </div>
+
+</div>
+
+<script>
+  async function processImage(file) {
+    if (!file) return;
+
+    // Obtener fecha y milisegundos exactos
+    const now = new Date();
+    const timestampStr = now.toISOString().replace('T', ' :: ').replace('Z', ' HS');
+
+    // Calcular Hash SHA-256 del archivo
+    const arrayBuffer = await file.arrayBuffer();
+    const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    // Mostrar datos en el ticket
+    document.getElementById('fileName').innerText = file.name;
+    document.getElementById('timestamp').innerText = timestampStr;
+    document.getElementById('fileSize').innerText = (file.size / 1024).toFixed(2) + " KB (" + file.size + " bytes)";
+    document.getElementById('hashValue').innerText = hashHex;
+
+    // Hacer visible el ticket
+    document.getElementById('ticket').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
